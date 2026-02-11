@@ -31,7 +31,7 @@ app.use(
     useTempFiles: true,
     tempFileDir: "/tmp/",
     limits: { fileSize: 10 * 1024 * 1024 }, // 10MB limit
-  })
+  }),
 );
 
 app.use(express.json());
@@ -46,7 +46,7 @@ app.use(
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"],
 
     allowedHeaders: ["Content-Type", "Authorization"],
-  })
+  }),
 );
 app.use(helmet());
 
@@ -95,9 +95,9 @@ app.post("/api/send-whatsapp", async (req: Request, res: Response) => {
 //   await triggerBirthdayMessagesNow();
 //   res.json({ message: "Birthday job triggered" });
 // });
-app.use("/api/v1", v1rootRouter);
+app.use("/", v1rootRouter);
 
-app.use("/api/v1/auth", authRoutes);
+// app.use("/api/v1/auth", authRoutes);
 
 app.use(notFound);
 app.use(errorMiddleware);
@@ -132,7 +132,7 @@ const startServer = async () => {
     // seedGroups();
 
     app.listen(env.PORT, () =>
-      logger.info(`Server is listening on PORT:${env.PORT}`)
+      logger.info(`Server is listening on PORT:${env.PORT}`),
     );
   } catch (error) {
     console.log("Error starting the server:", error);
