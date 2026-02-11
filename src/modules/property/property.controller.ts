@@ -1,5 +1,6 @@
 import type { Request, Response } from "express";
-import { PropertyService } from "./property.service.js";
+import PropertyService from "./property.service";
+// import { / } from "./property.service.js";
 
 export class PropertyController {
   // Create property

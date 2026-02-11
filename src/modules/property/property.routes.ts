@@ -14,17 +14,28 @@ const router = express.Router();
 
 // Public routes (for landing page)
 router
-  .route("/public")
+  .route("/")
   .get(PropertyController.getActiveProperties) // Get only active properties for public
+
   .all(methodNotAllowed);
 
-// router
-//   .route("/public/:id")
-//   .get(
-//     validateParams(PropertySchemas.propertyId),
-//     PropertyController.getPropertyById,
-//   ) // Get single property details for public
-//   .all(methodNotAllowed);
+// Admin routes (protected - uncomment isAuth middleware when ready)
+router
+  .route("/admin")
+  .get(PropertyController.getAllProperties) // Get all properties with filters
+  .post(
+    validateBody(PropertySchemas.createProperty),
+    PropertyController.createProperty,
+  )
+  .all(methodNotAllowed);
+
+router
+  .route("/:id")
+  .get(
+    validateParams(PropertySchemas.propertyId),
+    PropertyController.getPropertyById,
+  ) // Get single property details for public
+  .all(methodNotAllowed);
 
 // // Admin routes (protected - uncomment isAuth middleware when ready)
 // router
