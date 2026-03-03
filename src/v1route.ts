@@ -15,6 +15,7 @@ import DashboardRoutes from "./modules/dashboard/dashboard.route";
 import BirthdayRoutes from "./modules/birthday/birthday.routes";
 import PropertyRoute from "./modules/property/property.routes";
 import ConsultationRoute from "./modules/Consultation/Consultation.routes";
+import InpesctionRoute from "./modules/Inspection/inspection.routes";
 
 import sendEmail, { sendBulkEmail_Brevo } from "./utils/email";
 import groupModel from "./modules/group/group.model";
@@ -34,5 +35,6 @@ router
 
 router.use("/Property", PropertyRoute);
 router.use("/consultation", ConsultationRoute);
+router.use("/inspection", InpesctionRoute);
 
 export default router;
